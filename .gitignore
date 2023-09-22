@@ -1,3 +1,2 @@
-poetry.lock
-pyproject.toml
-replit.nix
+/myvenv/
+/src/__pycache__/

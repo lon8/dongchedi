@@ -1,9 +1,13 @@
-import requests
-import json
+import uvicorn
+from fastapi import FastAPI
+from src.handlers import router
 
-response = requests.get('https://www.dongchedi.com/auto/series/690')
+def get_application():
+    application = FastAPI()
+    application.include_router(router)
+    return application
 
-with open('index.html', 'w', encoding='utf-8') as file:
-    json.dump(response.text, file, indent=4, ensure_ascii=False)
+app = get_application()
 
-print(response.text)
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port=8000, log_level="info")
